@@ -261,7 +261,7 @@ window.addEventListener('load', () => {
           </div>
 
           <div 
-            className="text-[24rem] font-bold mb-24"
+            className="text-9xl font-bold mb-24"
             style={{ color: colorPalette.text[textColor] }}
           >
             {formatTime(timeLeft)}
