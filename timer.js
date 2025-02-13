@@ -337,5 +337,9 @@ window.addEventListener('load', () => {
   }
 
   const container = document.getElementById('app');
-  window.ReactDOM.createRoot(container).render(<App />);
+  if (container) {
+    ReactDOM.createRoot(container).render(<App />);
+  } else {
+    console.error('No container found for rendering the App');
+  }
 });
