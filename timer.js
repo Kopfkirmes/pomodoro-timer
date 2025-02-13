@@ -55,7 +55,15 @@ window.addEventListener('load', () => {
       }
     };
 
-    // Initial states and localStorage handling
+    const getLocalStorageItem = (key, defaultValue) => {
+      const value = localStorage.getItem(key);
+      return value ? JSON.parse(value) : defaultValue;
+    };
+
+    const setLocalStorageItem = (key, value) => {
+      localStorage.setItem(key, JSON.stringify(value));
+    };
+
     const savedTimeLeft = parseInt(localStorage.getItem('pomodoroTimeLeft'));
     const savedMode = localStorage.getItem('pomodoroMode');
     const savedBgColor = localStorage.getItem('pomodoroBgColor');
@@ -73,23 +81,19 @@ window.addEventListener('load', () => {
     };
 
     const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft);
-    const [isRunning, setIsRunning] = React.useState(() => {
-      const savedIsRunning = localStorage.getItem('pomodoroIsRunning');
-      return savedIsRunning ? JSON.parse(savedIsRunning) : false;
-    });
+    const [isRunning, setIsRunning] = React.useState(getLocalStorageItem('pomodoroIsRunning', false));
     const [currentMode, setCurrentMode] = React.useState(savedMode || 'FOCUS');
     const [showSettings, setShowSettings] = React.useState(false);
     const [bgColor, setBgColor] = React.useState(savedBgColor || 'LM Default White');
     const [textColor, setTextColor] = React.useState(savedTextColor || 'LM Notion Default');
 
-    // Timer logic and effects
     React.useEffect(() => {
       let interval;
       if (isRunning && timeLeft > 0) {
         interval = setInterval(() => {
           setTimeLeft(time => {
             const newTime = time - 1;
-            localStorage.setItem('pomodoroTimeLeft', newTime.toString());
+            setLocalStorageItem('pomodoroTimeLeft', newTime);
             return newTime;
           });
         }, 1000);
@@ -110,9 +114,9 @@ window.addEventListener('load', () => {
           oscillator.stop(audioContext.currentTime + 0.1);
         };
 
-        playBeep();
-        setTimeout(playBeep, 500);
-        setTimeout(playBeep, 1000);
+        for (let i = 0; i < 3; i++) {
+          setTimeout(playBeep, i * 500);
+        }
         
         setIsRunning(false);
         localStorage.removeItem('pomodoroStartTime');
@@ -122,11 +126,11 @@ window.addEventListener('load', () => {
     }, [isRunning, timeLeft]);
 
     React.useEffect(() => {
-      localStorage.setItem('pomodoroTimeLeft', timeLeft.toString());
-      localStorage.setItem('pomodoroMode', currentMode);
-      localStorage.setItem('pomodoroBgColor', bgColor);
-      localStorage.setItem('pomodoroTextColor', textColor);
-      localStorage.setItem('pomodoroIsRunning', JSON.stringify(isRunning));
+      setLocalStorageItem('pomodoroTimeLeft', timeLeft);
+      setLocalStorageItem('pomodoroMode', currentMode);
+      setLocalStorageItem('pomodoroBgColor', bgColor);
+      setLocalStorageItem('pomodoroTextColor', textColor);
+      setLocalStorageItem('pomodoroIsRunning', isRunning);
     }, [timeLeft, currentMode, bgColor, textColor, isRunning]);
 
     const toggleTimer = () => {
@@ -134,8 +138,8 @@ window.addEventListener('load', () => {
       setIsRunning(newIsRunning);
       
       if (newIsRunning) {
-        localStorage.setItem('pomodoroStartTime', Date.now().toString());
-        localStorage.setItem('pomodoroTotalDuration', timeLeft.toString());
+        setLocalStorageItem('pomodoroStartTime', Date.now());
+        setLocalStorageItem('pomodoroTotalDuration', timeLeft);
       } else {
         localStorage.removeItem('pomodoroStartTime');
         localStorage.removeItem('pomodoroTotalDuration');
@@ -327,7 +331,7 @@ window.addEventListener('load', () => {
   function App() {
     React.useEffect(() => {
       feather.replace();
-    });
+    }, []); // Ensure this effect runs only once on mount
 
     return <PomodoroTimer />;
   }
