@@ -1,6 +1,8 @@
 // timer.js
+const React = window.React;
+const ReactDOM = window.ReactDOM;
+
 window.addEventListener('load', () => {
-  function PomodoroTimer() {
     // ... (vorheriger Code bleibt gleich bis zu den Button-Komponenten)
 
     // Neue Komponente für die Modus-Buttons
