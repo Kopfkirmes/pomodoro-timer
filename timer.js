@@ -129,11 +129,6 @@ window.addEventListener('load', () => {
       localStorage.setItem('pomodoroIsRunning', JSON.stringify(isRunning));
     }, [timeLeft, currentMode, bgColor, textColor, isRunning]);
 
-    // Update feather icons
-    React.useEffect(() => {
-      feather.replace();
-    });
-
     const toggleTimer = () => {
       const newIsRunning = !isRunning;
       setIsRunning(newIsRunning);
