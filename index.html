@@ -277,7 +277,7 @@
                                 <button
                                     onClick={() => switchMode('SHORT_BREAK')}
                                     style={{ 
-                                        color: colorPalette.text[textColor],
+                                        color: currentMode === 'SHORT_BREAK' ? colorPalette.bg[bgColor] : colorPalette.text[textColor],
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'SHORT_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
@@ -289,7 +289,7 @@
                                 <button
                                     onClick={() => switchMode('FOCUS')}
                                     style={{ 
-                                        color: colorPalette.text[textColor],
+                                        color: currentMode === 'FOCUS' ? colorPalette.bg[bgColor] : colorPalette.text[textColor],
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'FOCUS' ? colorPalette.text[textColor] : 'transparent'
                                     }}
@@ -301,7 +301,7 @@
                                 <button
                                     onClick={() => switchMode('LONG_BREAK')}
                                     style={{ 
-                                        color: colorPalette.text[textColor],
+                                        color: currentMode === 'LONG_BREAK' ? colorPalette.bg[bgColor] : colorPalette.text[textColor],
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'LONG_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
