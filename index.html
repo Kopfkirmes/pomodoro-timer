@@ -277,7 +277,7 @@
                                 <button
                                     onClick={() => switchMode('SHORT_BREAK')}
                                     style={{ 
-                                        color: currentMode === 'SHORT_BREAK' ? 'white' : colorPalette.text[textColor],
+                                        color: colorPalette.text[textColor],
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'SHORT_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
@@ -285,25 +285,27 @@
                                 >
                                     Kurze Pause
                                 </button>
+                                
                                 <button
                                     onClick={() => switchMode('FOCUS')}
                                     style={{ 
-                                        color: currentMode === 'FOCUS' ? 'white' : colorPalette.text[textColor],
+                                        color: colorPalette.text[textColor],
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'FOCUS' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:opacity-80 transition-opacity"
+                                    className="px-4 py-2 rounded-full border font-semibold transition-all hover:bg-black/10"
                                 >
                                     Fokus
                                 </button>
+                                
                                 <button
                                     onClick={() => switchMode('LONG_BREAK')}
                                     style={{ 
-                                        color: currentMode === 'LONG_BREAK' ? 'white' : colorPalette.text[textColor],
+                                        color: colorPalette.text[textColor],
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'LONG_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:opacity-80 transition-opacity"
+                                    className="px-4 py-2 rounded-full border font-semibold transition-all hover:bg-black/10"
                                 >
                                     Lange Pause
                                 </button>
