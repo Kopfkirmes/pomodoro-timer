@@ -272,7 +272,6 @@
                         className="min-h-screen flex items-center justify-center transition-colors"
                         style={{ backgroundColor: colorPalette.bg[bgColor] }}
                     >
-                        <div className="flex flex-col items-center">
                             <div className="flex gap-2 mb-24">
                                 <button
                                     onClick={() => switchMode('SHORT_BREAK')}
@@ -281,7 +280,7 @@
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'SHORT_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:bg-black/10 transition-all"
+                                    className="px-4 py-2 rounded-full border font-semibold hover:!bg-black/10 transition-all"
                                 >
                                     Kurze Pause
                                 </button>
@@ -293,7 +292,7 @@
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'FOCUS' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:bg-black/10 transition-all"
+                                    className="px-4 py-2 rounded-full border font-semibold hover:!bg-black/10 transition-all"
                                 >
                                     Fokus
                                 </button>
@@ -305,7 +304,7 @@
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'LONG_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:bg-black/10 transition-all"
+                                    className="px-4 py-2 rounded-full border font-semibold hover:!bg-black/10 transition-all"
                                 >
                                     Lange Pause
                                 </button>
