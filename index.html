@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
-    <!-- Tailwind direkt von CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js" crossorigin></script>
@@ -15,39 +13,6 @@
         body {
             margin: 0;
             min-height: 100vh;
-        }
-        /* Zusätzliche grundlegende Styles */
-        .timer-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-        .timer-display {
-            font-size: 8rem;
-            font-weight: bold;
-            margin: 2rem 0;
-        }
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .mode-button {
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .control-button {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
         }
     </style>
 </head>
@@ -281,11 +246,11 @@
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'SHORT_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:bg-black/10 transition-all"
+                                    className="px-4 py-2 rounded-full border font-semibold transition-all"
                                 >
                                     Kurze Pause
                                 </button>
-                            
+
                                 <button
                                     onClick={() => switchMode('FOCUS')}
                                     style={{ 
@@ -293,11 +258,11 @@
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'FOCUS' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:bg-black/10 transition-all"
+                                    className="px-4 py-2 rounded-full border font-semibold transition-all"
                                 >
                                     Fokus
                                 </button>
-                            
+
                                 <button
                                     onClick={() => switchMode('LONG_BREAK')}
                                     style={{ 
@@ -305,25 +270,25 @@
                                         borderColor: colorPalette.text[textColor],
                                         backgroundColor: currentMode === 'LONG_BREAK' ? colorPalette.text[textColor] : 'transparent'
                                     }}
-                                    className="px-4 py-2 rounded-full border font-semibold hover:bg-black/10 transition-all"
+                                    className="px-4 py-2 rounded-full border font-semibold transition-all"
                                 >
                                     Lange Pause
                                 </button>
                             </div>
-                
+
                             <div 
                                 className="text-9xl font-bold mb-24 transform scale-125"
                                 style={{ color: colorPalette.text[textColor] }}
                             >
                                 {formatTime(timeLeft)}
                             </div>
-                
+
                             <div className="flex gap-4">
                                 <button
                                     onClick={toggleTimer}
                                     style={{
                                         backgroundColor: colorPalette.text[textColor],
-                                        color: colorPalette.bg[bgColor],
+                                        color: 'white',
                                         borderColor: colorPalette.text[textColor]
                                     }}
                                     className="w-12 h-12 flex items-center justify-center rounded-full border hover:opacity-75 transition-all"
@@ -334,69 +299,4 @@
                                             <rect x="14" y="4" width="4" height="16"/>
                                         </svg>
                                     ) : (
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                            <polygon points="5 3 19 12 5 21 5 3"/>
-                                        </svg>
-                                    )}
-                                </button>
-                                
-                                <button
-                                    onClick={() => {
-                                        setTimeLeft(MODES[currentMode]);
-                                        setIsRunning(false);
-                                        localStorage.removeItem('pomodoroStartTime');
-                                        localStorage.removeItem('pomodoroTotalDuration');
-                                    }}
-                                    style={{
-                                        borderColor: colorPalette.text[textColor],
-                                        color: colorPalette.text[textColor]
-                                    }}
-                                    className="w-12 h-12 flex items-center justify-center rounded-full border hover:bg-black/10 transition-all"
-                                >
-                                    <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2">
-                                        <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
-                                    </svg>
-                                </button>
-                                
-                                <button
-                                    onClick={() => setShowSettings(!showSettings)}
-                                    style={{
-                                        borderColor: colorPalette.text[textColor],
-                                        color: colorPalette.text[textColor]
-                                    }}
-                                    className="w-12 h-12 flex items-center justify-center rounded-full border hover:bg-black/10 transition-all"
-                                >
-                                    <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="2">
-                                        <circle cx="12" cy="12" r="3"/>
-                                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                
-                            <SettingsModal
-                                showSettings={showSettings}
-                                setShowSettings={setShowSettings}
-                                bgColor={bgColor}
-                                setBgColor={setBgColor}
-                                textColor={textColor}
-                                setTextColor={setTextColor}
-                            />
-                        </div>
-                    </div>
-                );
-
-            function App() {
-                React.useEffect(() => {
-                    feather.replace();
-                }, []);
-
-                return <PomodoroTimer />;
-            }
-
-            const container = document.getElementById('app');
-            const root = ReactDOM.createRoot(container);
-            root.render(<App />);
-        });
-    </script>
-</body>
-</html>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor
