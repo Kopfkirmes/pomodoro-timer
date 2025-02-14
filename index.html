@@ -272,7 +272,8 @@
                         className="min-h-screen flex items-center justify-center transition-colors"
                         style={{ backgroundColor: colorPalette.bg[bgColor] }}
                     >
-                           <div className="flex gap-2 mb-24">
+                        <div className="flex flex-col items-center">
+                            <div className="flex gap-2 mb-24">
                                 <button
                                     onClick={() => switchMode('SHORT_BREAK')}
                                     style={{ 
@@ -309,14 +310,14 @@
                                     Lange Pause
                                 </button>
                             </div>
-
+                
                             <div 
                                 className="text-9xl font-bold mb-24 transform scale-125"
                                 style={{ color: colorPalette.text[textColor] }}
                             >
                                 {formatTime(timeLeft)}
                             </div>
-
+                
                             <div className="flex gap-4">
                                 <button
                                     onClick={toggleTimer}
@@ -371,7 +372,7 @@
                                     </svg>
                                 </button>
                             </div>
-
+                
                             <SettingsModal
                                 showSettings={showSettings}
                                 setShowSettings={setShowSettings}
@@ -383,7 +384,6 @@
                         </div>
                     </div>
                 );
-            }
 
             function App() {
                 React.useEffect(() => {
